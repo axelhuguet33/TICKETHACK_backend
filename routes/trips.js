@@ -3,11 +3,12 @@ var router = express.Router();
 
 const Trip = require('../models/trips');
 
-router.get('/', (req, res) =>{
-    Trip.find().then(listTrip => {
+router.get('/:departure/:arrival/:date', (req, res) =>{
+    
+  Trip.find({departure : req.params.departure , arrival : req.params.arrival, date: req.params.date})
+  .then(listTrip => {
       res.json({trip : listTrip});
     })
   });
 
-  
 module.exports = router;
