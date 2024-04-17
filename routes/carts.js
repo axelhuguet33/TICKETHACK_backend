@@ -3,6 +3,13 @@ var router = express.Router();
 
 const Cart = require('../models/carts');
 
+router.get('/', (req, res) =>{
+    Cart.find()
+    .then(listTrip => {
+        res.json({trip : listTrip});
+    });
+  })
+
 router.post('/', (req, res) =>{
     const newCart = new Cart({
         departure: req.body.departure,
@@ -15,7 +22,15 @@ router.post('/', (req, res) =>{
         Cart.find().then(data => {
         console.log(data);
         });
-    });  
-
+    }); 
 })
+
+router.delete('/', (req,res) =>{    
+    Cart.deleteMany({}).then(() => { 
+        Cart.find().then(data => {
+          console.log(data);
+        });
+       });
+})
+
 module.exports = router;

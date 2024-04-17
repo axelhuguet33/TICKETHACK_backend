@@ -11,6 +11,12 @@ router.get('/:departure/:arrival', (req, res) =>{
   });
 })
 
+router.get('/:tripId', (req, res) =>{
+  Trip.findById(`${req.params.tripId}`).then(trip =>{
+    res.json({trip : trip});
+  })
+})
+
 
 
 module.exports = router;
