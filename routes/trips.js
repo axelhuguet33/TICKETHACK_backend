@@ -10,4 +10,7 @@ router.get('/:departure/:arrival', (req, res) =>{
       res.json({trip : listTrip});
   });
 })
+
+
+
 module.exports = router;
