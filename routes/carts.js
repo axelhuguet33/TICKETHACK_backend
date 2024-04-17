@@ -6,7 +6,7 @@ const Cart = require('../models/carts');
 router.get('/', (req, res) =>{
     Cart.find()
     .then(listTrip => {
-        res.json({trip : listTrip});
+        res.json(listTrip);
     });
   })
 
@@ -21,16 +21,16 @@ router.post('/', (req, res) =>{
     newCart.save().then(() => {
         Cart.find().then(data => {
         console.log(data);
+        res.json({result : true});
         });
-    }); 
+    });
 })
 
 router.delete('/', (req,res) =>{    
-    Cart.deleteMany({}).then(() => { 
-        Cart.find().then(data => {
-          console.log(data);
-        });
-       });
+    Cart.deleteMany({}).then(data => {
+        console.log(data);
+        res.json({result : true});
+    });
 })
 
 module.exports = router;
